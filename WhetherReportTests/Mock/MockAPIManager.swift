@@ -14,14 +14,11 @@ class MockAPIManager {
     func getWeatherDataFromServer(CompletionBlockWithSuccess completion: @escaping (Result<WeatherData, DataError>) -> Void)  {
         if shouldSucceed {
             guard let data = mockWeatherData() else {
-                let error = NSError(domain: "MockedErrorDomain", code: 123, userInfo: nil)
                 return completion(.failure(.invalidData))
             }
             
             completion(.success(data))
         } else {
-            // Simulate a failure response
-            let error = NSError(domain: "MockedErrorDomain", code: 123, userInfo: nil)
             completion(.failure(.invalidData))
         }
     }
@@ -29,14 +26,11 @@ class MockAPIManager {
     func getForecastDataFromServer(CompletionBlockWithSuccess completion: @escaping (Result<WeatherDataList, DataError>) -> Void)  {
         if shouldSucceed {
             guard let data = mockWeatherDataList() else {
-                let error = NSError(domain: "MockedErrorDomain", code: 123, userInfo: nil)
                 return completion(.failure(.invalidData))
             }
             
             completion(.success(data))
         } else {
-            // Simulate a failure response
-            let error = NSError(domain: "MockedErrorDomain", code: 123, userInfo: nil)
             completion(.failure(.invalidData))
         }
     }
