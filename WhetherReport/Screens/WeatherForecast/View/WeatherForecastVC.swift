@@ -47,6 +47,8 @@ class WeatherForecastVC: UIViewController {
         configuration()
     }
 
+    
+    
     //MARK: - IBAction Methods
     @IBAction func closeView(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -80,11 +82,13 @@ extension WeatherForecastVC {
                 }
                 
             case .error(_):
-                self.loader.dismiss(animated: true, completion: nil)
-                // Showing alert in case of error
-                let alert = UIAlertController(title: Constant.Alert.Title, message: Constant.Alert.Message, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: Constant.Alert.Button, style: UIAlertAction.Style.default))
-                self.present(alert, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.loader.dismiss(animated: true, completion: nil)
+                    // Showing alert in case of error
+                    let alert = UIAlertController(title: Constant.Alert.Title, message: Constant.Alert.Message, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: Constant.Alert.Button, style: UIAlertAction.Style.default))
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
         }
     }

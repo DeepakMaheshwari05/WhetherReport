@@ -40,7 +40,7 @@ class APIManager {
         url: URL, modelType: T.Type,
         completion: @escaping (Result<T, DataError>) -> Void
     ) {
-        let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
+        var request = URLRequest(url: url)
         request.httpMethod = Constant.API.method
         request.allHTTPHeaderFields = Constant.API.headers
 
